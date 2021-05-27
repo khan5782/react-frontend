@@ -23,7 +23,7 @@ function LogIn(props){
         .then(res => res.text())
         .then((data) => {
             console.log(data)
-            if(data === '' || data === "[]"){
+            if(data === '' || data === "[]" || data === 'Invalid Password'){
                 document.getElementById('alert').classList.remove("d-none")
                 return 
             }

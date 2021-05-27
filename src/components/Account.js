@@ -29,7 +29,14 @@ function Account(){
             headers: {
                 'Content-Type': 'application/json'
             }
-  
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            if(data.err){
+                document.getElementById('alert').classList.remove('d-none')
+            } else{
+                document.getElementById('alert').classList.add('d-none')
+            }
         })
         
     }
@@ -38,15 +45,29 @@ function Account(){
         let id = localStorage.getItem("id")
         fetch(`/users/${id}`, {
             method: "DELETE"
-        }) 
-        .then(() => {
-            localStorage.removeItem("id")
-            history.push("/login")
+        })  
+        .then(res => res.text())
+        // .then(console.log)       
+        // .then(res => res.json())
+        .then((data) => {
+            if(data === ''){
+                localStorage.removeItem("id")
+                history.push("/login")
+                return
+            }
+            data = JSON.parse(data)
+            if(data.err){
+                console.log(data.err) 
+            }
+            
         })
     }
 
     return (
         <div>
+            <div className="alert alert-danger d-none" id="alert">
+                Missing Password
+            </div>
             <form onSubmit={handleUpdateUser}>
             <div className="form-group">
                     <label htmlFor="name">Name</label>
@@ -60,10 +81,10 @@ function Account(){
                     <label htmlFor="password">Password</label>
                     <input id="password" type="password" className="form-control" name="password" value={user.password} onChange={(e) => {setUser({...user, password: e.target.value})}}/>
                 </div>    
-                <button className="btn btn-primary">Update User</button>
+                <button className="btn btn-primary">Update User Info</button>
             </form>
-            <button className="btn btn-primary" onClick={handleDeleteUser}>Delete User</button>
-            { personalPetList && personalPetList.length > 0? <PetCardList petList={personalPetList}/> : <div className="jumbotron">You have no pets!</div>} 
+            <button className="btn btn-primary" onClick={handleDeleteUser}>Delete Account</button>
+            { personalPetList && personalPetList.length > 0? <PetCardList petList={personalPetList}/> : <div className="jumbotron">You have not adopted any pets yet!</div>} 
         </div>
         
     )

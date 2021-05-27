@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom"
-
+import { useHistory } from 'react-router-dom';
 function PetDetail(){
     
     const [currentPet, setCurrentPet] = useState({})
+    const history = useHistory();
 
     let imgStyle = {
         width: "100%",
@@ -19,6 +20,10 @@ function PetDetail(){
         .then(setCurrentPet)
     }, [])
 
+    function handleAdopt(){
+        // handle adopted pets when clicked
+    }
+
     return (
         <div>
             <div className="row">
@@ -27,7 +32,7 @@ function PetDetail(){
                         <img src={currentPet.image_url} style={imgStyle}/>
                     </div>
                     <div className="row">
-                        <button className="btn btn-success btn-block">Adopt!</button>
+                        <button className="btn btn-success btn-block" onClick={handleAdopt}>Adopt!</button>
                     </div>
                 </div>
                 <div className="col">

@@ -8,7 +8,7 @@ function PetCard(props){
     }
 
     return (
-        <div className="card col" >
+        <div className="card col-3" >
         <Link to={"/pets/" + props.id}>
             <img className="card-img-top" src={props.image_url} alt="Card image cap" style={imgStyle}/>
             <div className="card-body">
