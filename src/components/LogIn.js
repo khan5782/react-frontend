@@ -1,5 +1,4 @@
 import { useHistory } from 'react-router-dom';
-
 function LogIn(props){
 
     const history = useHistory();
@@ -28,17 +27,19 @@ function LogIn(props){
                 return 
             }
             data = JSON.parse(data)
-            props.setId(data.id)
+            props.setUsername(data.username)
             history.push("/")
         })
     }
 
     return (
-    <div>
+    <>
         <div className="alert alert-danger d-none" id="alert">
             Invalid Credentials
         </div>
-        <form onSubmit={handleSubmit}>
+        
+        <form onSubmit={handleSubmit} className="login-form">
+            <h1>Log In Form</h1>
             <div className="form-group">
                 <label htmlFor="username">Username</label>
                 <input id="username" className="form-control" name="username" />
@@ -49,10 +50,10 @@ function LogIn(props){
             </div>      
             
             <button type="submit" className="btn btn-primary btn-block">Log In</button>
-            <a  href="/register" className="btn btn-info btn-block">Create An Account!</a>
-            
+            <a  href="/register" className="btn btn-info btn-block">Create An Account</a>
+            <button type="submit" className="btn btn-danger btn-block">Forgot Password!</button>
         </form>
-    </div>
+    </>
     )
 }
 

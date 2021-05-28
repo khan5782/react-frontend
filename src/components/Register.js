@@ -24,14 +24,15 @@ function Register(props){
         })
         .then(res => res.json())
         .then((data) => {
-            props.setId(data.id)
+            props.setUsername(data.username)
             history.push("/")
         })
     }
   
     return (
-        <div>
-            <form onSubmit={handleSubmission}>
+        <>
+            <form onSubmit={handleSubmission} className="login-form">
+                <h1>Register Here</h1>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input className="form-control" name="name" />
@@ -44,10 +45,13 @@ function Register(props){
                     <label htmlFor="password">Password</label>
                     <input id="password" type="password" className="form-control" name="password" />
                 </div>      
-            
-                <button className="btn btn-primary">Create Account</button>
+                <div className="row">
+                <div className="col">
+                <button className="btn btn-primary btn-block">Create Account</button>
+                </div>
+                </div>
             </form>
-        </div>
+        </>
     )
  
 }

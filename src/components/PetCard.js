@@ -2,13 +2,12 @@ import {Link} from 'react-router-dom'
 function PetCard(props){
 
     let imgStyle = {
-        width: "200px",
-        height: "200px",
-        "objectFit": "cover"
+        width: "100%",
+        height: "200px"
     }
 
     return (
-        <div className="card col-3" >
+        <div className="card col-3 mb-3 paddingCard ">
         <Link to={"/pets/" + props.id}>
             <img className="card-img-top" src={props.image_url} alt="Card image cap" style={imgStyle}/>
             <div className="card-body">

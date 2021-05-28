@@ -13,7 +13,12 @@ function UnadoptedList(){
     }, [])
 
     return(
-        <PetCardList petList={unadoptedList}/>
+        <div className="row">
+            <div className="col">
+            <h1 className="text-center">Unadopted Pets!</h1>
+            <PetCardList petList={unadoptedList}/>
+            </div>
+        </div>
     )
 }
 

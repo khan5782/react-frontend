@@ -22,6 +22,13 @@ function PetDetail(){
 
     function handleAdopt(){
         // handle adopted pets when clicked
+        fetch('/pets/claim/' + id, {
+            method: "PUT"
+        })
+        .then(res => res.json())
+        .then(() => {
+            history.push("/account")
+        })
     }
 
     return (
@@ -37,14 +44,17 @@ function PetDetail(){
                 </div>
                 <div className="col">
                     <ul className="list-group">
-                        <li className="list-group-item">{currentPet.name}</li>
-                        <li className="list-group-item">{currentPet.age}</li>
-                        <li className="list-group-item">{currentPet.species}</li>
+                        <li className="list-group-item"> Name: {currentPet.name}</li>
+                        <li className="list-group-item">Age: {currentPet.age} years old</li>
+                        <li className="list-group-item">Species: {currentPet.species}</li>
                     </ul>
                 </div>
             </div>
             <div className="row">
-                {currentPet.description}
+                <div className="col">
+                <h2>Description</h2>
+                <p>{currentPet.description}</p>
+                </div>
             </div>
         </div>
     )

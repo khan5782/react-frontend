@@ -1,4 +1,4 @@
-import './App.css';
+import './App.css'
 import NavBar from './components/NavBar';
 import UnadoptedList from './components/UnadoptedList';
 import Register from './components/Register';
@@ -14,13 +14,13 @@ import PetDetail from './components/PetDetail';
 
 function App() {
 
-  const [id, setId] = useLocalStorage("id", null)
+  const [username, setUsername] = useLocalStorage("username", null)
 
   return (
     <div className="App">
       <Router>
-        <NavBar setId={setId} id={id}/>
-      <div className="container">
+        <NavBar setUsername={setUsername} username={username}/>
+      <div className="container-fluid">
         <Switch>
           <Route exact path="/">
             <UnadoptedList />
@@ -29,10 +29,10 @@ function App() {
             <PetDetail />
           </Route>
           <Route path="/register">
-            <Register setId={setId}/>
+            <Register setUsername={setUsername}/>
           </Route>
           <Route path="/login">
-            <LogIn setId={setId}/>
+            <LogIn setUsername={setUsername}/>
           </Route>
           <Route path="/account">
             <Account />
